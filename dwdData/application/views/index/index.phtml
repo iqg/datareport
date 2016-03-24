@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <!-- Bootstrap -->
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/public/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link href="/public/css/login.css" rel="stylesheet" media="screen">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="login_header">
+        <a class="switch_jump" href="/user/register">注册</a>
+        <h2 class="login_logo"><span class="logo_l">多维度·</span><span class="logo_r">数据平台</span><small>V1.0</small></h2>
+    </div> <!--//.login_header-->
+    <div class="login_box center-block">
+        <form class="form-horizontal form_hsq_x" data-page="login" action=/user/login method="post">
+            <div class="control-group">
+                <label class="control-label" for="input_phone"><i class="req">*</i> 手机号码</label>
+                <div class="controls">
+                    <input class="verify" data-type="phone" maxlength='11' type="text" id="input_username" name="input_username" value="">
+                    <span class="help-inline"></span>
+                </div>
+            </div> <!--//.control-group-->
+            <div class="control-group">
+                <label class="control-label" for="input_password"><i class="req">*</i> 密码</label>
+                <div class="controls">
+                    <input class="verify" data-type="password" type="password" id="input_password" name="_password">
+                    <span class="help-inline"></span>
+                </div>
+            </div> <!--//.control-group-->
+            <input type="hidden" name="_csrf_token" value="suYqJxiYy77JRW44XUZVMfJlyzyWH74N8YFSKn-cncc"/>
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        <span class="auto_login">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label for="remember_me">7天自动登录</label>
+                        </span>
+                        <span class="help-inline call_pwd"><a href="/user/resetting/request">忘记密码</a></span>
+                    </label>
+                    <button type="submit" class="btn btn-primary btn-large btn_submit submit_login">登录</button>
+                </div>
+            </div> <!--//.control-group-->
+        </form>
+    </div> <!--//.login_box-->
+
+    <div class="login_footer">
+        <p>&copy; szl.net</p>
+    </div>
+</div>
+
+<script src="/public/js/jquery-1.9.1.min.js"></script>
+<script src="/public/js/login.js"></script>
+</body>
+</html>

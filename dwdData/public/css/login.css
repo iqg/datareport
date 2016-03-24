@@ -1,0 +1,16 @@
+.login_header{height: 50px; padding:1px 0 10px 30px;margin: 20px 0 20px; border-bottom: 1px solid #CCC; }
+.center-block{ display: block; margin-left: auto; margin-right: auto;}
+.login_box{width: 600px; margin-top: 80px; margin-bottom: 120px;}
+.login_logo {color: #333333; font-size: 28px;}
+.login_logo .logo_l,
+.login_logo .logo_r{ display: inline-block; line-height: 1;}
+.login_logo .logo_l{color:#CC3300; }
+.login_logo .logo_r{ padding-right: 10px; margin-right: 10px;border-right: 2px solid #333;}
+.switch_jump{float:right;margin-top: 20px; padding: 10px 20px;}
+i.req{color:red;font-style: normal;}
+.login_footer{border-top: 1px solid #CCC; margin: 10px 0; padding: 20px 0;text-align: center;}
+.btn_submit{padding-left:40px; padding-right: 40px; margin-top: 10px;}
+.auto_login,
+.call_pwd{display: inline-block;vertical-align: middle;}
+.auto_login{margin-right: 40px;}
+#captcha{height:30px; width:80px;}
