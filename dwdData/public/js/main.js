@@ -15,31 +15,31 @@ function find(){
     return;
   }
   if(checkValue == "1"){
-    window.location = "/weekOrderByCity/jump?startDate="+startDate+"&endDate="+endDate;
+    window.location = "/weekorderbycity/jump?startDate="+startDate+"&endDate="+endDate;
   }
   if(checkValue == "2"){
-    window.location = "/weekComplaintBranch/jump?startDate="+startDate+"&endDate="+endDate;
+    window.location = "/weekcomplaintbranch/jump?startDate="+startDate+"&endDate="+endDate;
   }
   if(checkValue == "3"){
-    window.location = "/complaintTag/jump?startDate="+startDate+"&endDate="+endDate;
+    window.location = "/complainttag/jump?startDate="+startDate+"&endDate="+endDate;
   }
   if(checkValue == "4"){
-    window.location = "/tagOnclick/jump?startDate="+startDate+"&endDate="+endDate;
+    window.location = "/tagonclick/jump?startDate="+startDate+"&endDate="+endDate;
   }
   if(checkValue == "5"){
-    window.location = "/verificationRate/jump?startDate="+startDate+"&endDate="+endDate+"&type=sqy";
+    window.location = "/verificationrate/jump?startDate="+startDate+"&endDate="+endDate+"&type=sqy";
   }
   if(checkValue == "6"){
     window.location = "/VerificationRate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
   if(checkValue == "7"){
-    window.location = "/salesRate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
+    window.location = "/salesrate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
   if(checkValue == "8"){
-    window.location = "/tagSales/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
+    window.location = "/tagsales/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
   if(checkValue == "9"){
-    window.location = "/offLineDetail/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
+    window.location = "/offLinedetail/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
 }
 

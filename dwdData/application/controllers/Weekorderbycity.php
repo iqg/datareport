@@ -22,7 +22,7 @@ class weekOrderByCityController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('weekOrderByCity');
+        $this->display('weekorderbycity');
         return false;
     }
 

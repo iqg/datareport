@@ -17,14 +17,14 @@ class tagOnclickController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('tagOnclick');
+        $this->display('tagonclick');
         return false;
     }
 
     public function getJsonDataAction(){
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
-        $this->tagOnclick = $this->load('tagOnclick');
+        $this->tagOnclick = $this->load('tagonclick');
         $tagOnclickArray = $this->tagOnclick->getTagOnclick($startDate,$endDate);
         $json_data = array(
             "draw"            => intval( $this->getParam('draw')),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
@@ -40,7 +40,7 @@ class tagOnclickController extends BasicController{
 
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
-        $this->tagOnclick = $this->load('tagOnclick');
+        $this->tagOnclick = $this->load('tagonclick');
         $tagOnclickArray = $this->tagOnclick->getTagOnclick($startDate,$endDate);
 
         header('Content-Type: application/vnd.ms-excel');

@@ -13,7 +13,7 @@ class offLineDetailController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('offLineDetail');
+        $this->display('offLinedetail');
         return false;
     }
 
@@ -21,7 +21,7 @@ class offLineDetailController extends BasicController{
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
 
-        $this->offLineDetail = $this->load('offLineDetail');
+        $this->offLineDetail = $this->load('offLinedetail');
         $offLineDetail = $this->offLineDetail->getOffLineDetail($startDate,$endDate);
 
 
