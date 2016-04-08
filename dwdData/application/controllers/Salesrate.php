@@ -13,7 +13,7 @@ class salesRateController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('salesrate');
+        $this->display('salesRate');
         return false;
     }
 

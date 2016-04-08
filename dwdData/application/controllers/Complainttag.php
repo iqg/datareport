@@ -22,7 +22,7 @@ class complaintTagController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('complainttag');
+        $this->display('complaintTag');
         return false;
     }
 
@@ -68,7 +68,7 @@ class complaintTagController extends BasicController{
         $objPHPExcel = new PHPExcel();
 
 
-        $objPHPExcel->setActiveSheetIndex(0):
+        $objPHPExcel->setActiveSheetIndex(0)
             ->SetCellValue('A1', '投诉类型')
             ->SetCellValue('B1', '数量');
         $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(true);//加粗A2

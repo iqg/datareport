@@ -30,7 +30,7 @@ function find(){
     window.location = "/verificationrate/jump?startDate="+startDate+"&endDate="+endDate+"&type=sqy";
   }
   if(checkValue == "6"){
-    window.location = "/VerificationRate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
+    window.location = "/verificationRate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
   if(checkValue == "7"){
     window.location = "/salesrate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";

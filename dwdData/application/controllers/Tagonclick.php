@@ -17,7 +17,7 @@ class tagOnclickController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('tagonclick');
+        $this->display('tagOnclick');
         return false;
     }
 

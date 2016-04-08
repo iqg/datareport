@@ -15,7 +15,7 @@ class tagSalesController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('tagsales');
+        $this->display('tagSales');
         return false;
     }
 
