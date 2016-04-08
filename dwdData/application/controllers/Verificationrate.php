@@ -19,7 +19,6 @@ class verificationRateController extends BasicController{
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
         if($type == "sqy") {
-
             $this->display('sqyVerificationRate');
         }else{
             $this->display('wxpVerificationRate');
