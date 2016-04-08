@@ -15,7 +15,7 @@ class tagSalesController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('tagsales');
+        $this->display('tagsales1');
         return false;
     }
 
@@ -23,7 +23,7 @@ class tagSalesController extends BasicController{
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
 
-        $this->tagSales = $this->load('tagsales');
+        $this->tagSales = $this->load('tagsales1');
         $tagSalesArray = $this->tagSales->getTagSales($startDate,$endDate);
         $json_data = array(
             "draw"            => intval( $this->getParam('draw')),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
@@ -39,7 +39,7 @@ class tagSalesController extends BasicController{
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
 
-        $this->tagSales = $this->load('tagsales');
+        $this->tagSales = $this->load('tagsales1');
         $tagSalesArray = $this->tagSales->getTagSales($startDate,$endDate);
 
         header('Content-Type: application/vnd.ms-excel');

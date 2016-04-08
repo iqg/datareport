@@ -13,12 +13,12 @@ class salesRateController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('salesrate');
+        $this->display('salesrate1');
         return false;
     }
 
     public function getJsonDataAction(){
-        $this->salesRate = $this->load('salesrate');
+        $this->salesRate = $this->load('salesrate1');
         $startDate = $this->getParam('startDate');   //查询开始日期
         $endDate = $this->getParam('endDate');      //查询结束日期
         $salesRateArray = $this->salesRate->getSalesRate($startDate,$endDate);
