@@ -18,7 +18,7 @@ class salesRateController extends BasicController{
     }
 
     public function getJsonDataAction(){
-        $this->salesRate = $this->load('salesrate');
+        $this->salesRate = $this->load('salesRate');
         $startDate = $this->getParam('startDate');   //查询开始日期
         $endDate = $this->getParam('endDate');      //查询结束日期
         $salesRateArray = $this->salesRate->getSalesRate($startDate,$endDate);

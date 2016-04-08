@@ -41,6 +41,9 @@ function find(){
   if(checkValue == "9"){
     window.location = "/offLinedetail/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
+  if(checkValue == "10"){
+    window.location = "/cbSaleRate/jump?startDate="+startDate+"&endDate="+endDate;
+  }
 }
 
 function excelExport(){
