@@ -22,7 +22,7 @@ class complaintTagController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('complainttag1');
+        $this->display('complainttag');
         return false;
     }
 
@@ -30,7 +30,7 @@ class complaintTagController extends BasicController{
      *  基于城市的下线活动数 表格数据json格式
      */
     public function getJsonDataAction(){
-        $this->complaintTag = $this->load('complainttag1');
+        $this->complaintTag = $this->load('complainttag');
         $startDate = $this->getParam('startDate');   //查询开始日期
         $endDate = $this->getParam('endDate');      //查询结束日期
 
@@ -48,7 +48,7 @@ class complaintTagController extends BasicController{
     }
 
     public function excelExportAction(){
-        $this->complaintTag = $this->load('complainttag1');
+        $this->complaintTag = $this->load('complainttag');
         $startDate = $this->getParam('startDate');   //查询开始日期
         $endDate = $this->getParam('endDate');      //查询结束日期
 

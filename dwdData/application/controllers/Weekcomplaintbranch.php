@@ -22,7 +22,7 @@ class weekComplaintBranchController extends BasicController{
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
-        $this->display('weekcomplaintbranch1');
+        $this->display('weekcomplaintbranch');
         return false;
     }
 

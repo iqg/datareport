@@ -46,7 +46,7 @@ class verificationRateController extends BasicController{
         $orderColumn = $columns[$requestData['order'][0]['column']];
         $orderDir =$requestData['order'][0]['dir'];
 
-        $this->verificationRate = $this->load('verificationrate1');
+        $this->verificationRate = $this->load('verificationrate');
         $sqyVerificationRateArray = $this->verificationRate->getSqyVerificationRate($startDate,$endDate,$orderColumn,$orderDir);
         $totalData = count($sqyVerificationRateArray);
         $totalFiltered = $totalData;
@@ -67,7 +67,7 @@ class verificationRateController extends BasicController{
     public function getWxpJsonDataAction(){
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
-        $this->verificationRate = $this->load('verificationrate1');
+        $this->verificationRate = $this->load('verificationrate');
         $wxpVerificationRateArray = $this->verificationRate->getWxpVerificationRate($startDate,$endDate);
         $json_data = array(
             "draw"            => intval( $this->getParam('draw')),
@@ -82,7 +82,7 @@ class verificationRateController extends BasicController{
     public function excelExportAction(){
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
-        $this->verificationRate = $this->load('verificationrate1');
+        $this->verificationRate = $this->load('verificationrate');
         $sqyVerificationRateArray = $this->verificationRate->getSqyVerificationRate($startDate,$endDate);
 
 
