@@ -67,7 +67,7 @@ class verificationRateController extends BasicController{
     public function getWxpJsonDataAction(){
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
-        $this->verificationRate = $this->load('verificationrate');
+        $this->verificationRate = $this->load('verificationRate');
         $wxpVerificationRateArray = $this->verificationRate->getWxpVerificationRate($startDate,$endDate);
         $json_data = array(
             "draw"            => intval( $this->getParam('draw')),
@@ -82,7 +82,7 @@ class verificationRateController extends BasicController{
     public function excelExportAction(){
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
-        $this->verificationRate = $this->load('verificationrate');
+        $this->verificationRate = $this->load('verificationRate');
         $sqyVerificationRateArray = $this->verificationRate->getSqyVerificationRate($startDate,$endDate);
 
 
