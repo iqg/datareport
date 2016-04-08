@@ -30,13 +30,16 @@ function find(){
     window.location = "/verificationRate/jump?startDate="+startDate+"&endDate="+endDate+"&type=sqy";
   }
   if(checkValue == "6"){
-    window.location = "/verificationRate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
+    window.location = "/VerificationRate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
   if(checkValue == "7"){
     window.location = "/salesRate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
   if(checkValue == "8"){
     window.location = "/tagSales/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
+  }
+  if(checkValue == "9"){
+    window.location = "/offLineDetail/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
 }
 

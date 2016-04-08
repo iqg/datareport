@@ -6,17 +6,18 @@
  * Time: 上午11:37
  */
 class M_salesRate extends Model{
-    public function getSalesRate($startDate,$startDate){
+    public function getSalesRate($startDate,$endDate){
         $sql = "select z.name '城市', count(0) '每日可销', sum(o.c*cb.stock) '每周应销', sum(if (cc.c is NULL, 0, cc.c)) '每周实销', sum(if (cc.c is NULL, 0, cc.c))/sum(o.c*cb.stock) '周销售率'
 from (
 select branch_id,count(0) c from
 (
+
 select *
 from stats_branch_day
 where type=1
 and total_num>10
 and created_at>'".$startDate."'
-and created_at<'".$startDate."'
+and created_at<'".$endDate."'
 group by concat(branch_id, created_at)
 order by created_at desc
 ) t
@@ -29,7 +30,7 @@ left join campaign cp on cb.campaign_id = cp.id
 left join item i on i.id = cp.item_id
 left join saler s on b.maintainer_id = s.id
 left join zone z on s.zone_id=z.id
-left join (select campaign_branch_id, count(0) c from product_order where `trade_status`=1 and type<3 and created_at>'2016-2-26' and created_at<'2016-3-4' group by campaign_branch_id) cc on cc.campaign_branch_id = cb.id # 获取订单数量
+left join (select campaign_branch_id, count(0) c from product_order where `trade_status`=1 and type<3 and created_at>'".$startDate."' and created_at<'".$endDate."' group by campaign_branch_id) cc on cc.campaign_branch_id = cb.id # 获取订单数量
 where i.name is not NULL
 and b.name not like '一席地%'
 group by z.id ";
