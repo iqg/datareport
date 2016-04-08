@@ -46,7 +46,7 @@ class verificationRateController extends BasicController{
         $orderColumn = $columns[$requestData['order'][0]['column']];
         $orderDir =$requestData['order'][0]['dir'];
 
-        $this->verificationRate = $this->load('verificationrate');
+        $this->verificationRate = $this->load('verificationRate');
         $sqyVerificationRateArray = $this->verificationRate->getSqyVerificationRate($startDate,$endDate,$orderColumn,$orderDir);
         $totalData = count($sqyVerificationRateArray);
         $totalFiltered = $totalData;
