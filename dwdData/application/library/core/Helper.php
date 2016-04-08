@@ -55,7 +55,7 @@ abstract class Helper {
 
 		$default = FALSE;
 		$file = MODEL_PATH .$path .'/M_'.ucfirst($model).'.php';
-		
+
 		if(!file_exists($file)) {
 			// 加载默认模型, 减少没啥通用方法的模型
 			$default = TRUE;
