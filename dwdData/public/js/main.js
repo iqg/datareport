@@ -38,9 +38,6 @@ function find(){
   if(checkValue == "8"){
     window.location = "/tagSales/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
-  if(checkValue == "9"){
-    window.location = "/offLineDetail/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
-  }
 }
 
 function excelExport(){
