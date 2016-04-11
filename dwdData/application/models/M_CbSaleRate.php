@@ -7,7 +7,7 @@
  */
 class M_cbSaleRate extends Model{
     public function getSale($startDate,$endDate){
-        $sql = "select o.branch_id '门店ID', cb.id 'cb_id', i.name item, b.name shop, cb.type, cb.start_time, o.c n,z.name city, s.name '跟进销售',if (cc.c is NULL, 0, cc.c) 'order_count'
+        $sql = "select o.branch_id '门店ID', cb.id '活动ID', i.name item, b.name shop, cb.type, cb.start_time, cb.stock,o.c n,o.c*cb.stock '周可售', z.name city, s.name saler,if (cc.c is NULL, 0, cc.c) '订单量', (if (cc.c is NULL, 0, cc.c))/(o.c*cb.stock) '销售率'
 from (
 select branch_id,count(0) c from
 (
@@ -15,7 +15,8 @@ select *
 from stats_branch_day
 where type=1
 and total_num>10
-
+and created_at>='".$$startDate."'
+and created_at<'".$endDate."'
 group by concat(branch_id, created_at)
 order by created_at desc
 ) t

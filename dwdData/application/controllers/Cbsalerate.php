@@ -22,16 +22,26 @@ class cbSaleRateController extends BasicController{
         $endDate = $this->getParam('endDate');
         $this->cbSaleRate = $this->load('cbSaleRate');
         $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate);
+        $cbSaleArray = array();
+        foreach($cbSaleRateArray as $key => $val){
+            $a = array();
+            $a['order_count'] = $val['订单量'];
+            $a['saler'] = $val['saler'];
+            $a['shop'] = $val['shop'];
+            $a['city'] = $val['city'];
+            $cbSaleArray[$val['活动ID']] = $a;
+        }
 
 // 连接到mongodb
 //        $m = new MongoClient("mongodb://sa:sa@10.0.0.10:27017/iqg_prod");
         $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
+//        $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@127.0.0.1:2717/iqg_prod");
+
         $db = $m->iqg_prod;
         $collection = $db->campaignbydate;
 
-        $query = array('data[0]["item_id"]'=>530);
-        $query = array("timestamp"=>array('$gt'=>strtotime('2015/12/18'),'$lt'=>strtotime('2015/12/20')));
-        $cursor = $collection->find();
+        $query = array("timestamp"=>array('$gt'=>strtotime('2016/3/31'),'$lt'=>strtotime('2016/4/1')));
+        $cursor = $collection->find($query);
 
         $array = array();
         foreach ($cursor as $document) {
@@ -54,31 +64,20 @@ class cbSaleRateController extends BasicController{
             }
         }
 
-        $sales = array();
-        foreach($stockArray as $key => $val){
-            foreach($cbSaleRateArray as $key1 => $val1){
-                if($val['cb_id'] == $val1['cb_id']){
-                    $a = array();
-                    $a['销售率'] = $val1['order_count'] / $val['stock'];
-                    $a['城市'] = $val1['city'];
-                    $a['门店名'] = $val1['shop'];
-                    $a['跟进销售'] = $val1['跟进销售'];
-                    $a['订单量'] = $val1['order_count'];
-                    $a['活动名'] = $val1['item'];
-                    $sales[$val['cb_id']] = $a;
-                    break;
-                }
-            }
+        foreach($cbSaleArray as $key => $val){
+            $exist = array_key_exists($key,$stockArray);
+            $cbSaleArray[$key]['销售率'] = $exist ? $val['order_count'] / $stockArray[$key]['stock'] : '0';
         }
-        print_r($sales);
+
+        $json_data = array(
+            "draw"            => intval( $this->getParam('draw')),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal"    => intval( count($cbSaleArray) ),  // total number of records
+            "recordsFiltered" => intval( count($cbSaleArray) ), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data"            => $cbSaleArray   // total data array
+        );
+        print_r(json_encode($json_data));
         exit;
-//        $json_data = array(
-//            "draw"            => intval( $this->getParam('draw')),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
-//            "recordsTotal"    => intval( count($tagOnclickArray) ),  // total number of records
-//            "recordsFiltered" => intval( count($tagOnclickArray) ), // total number of records after searching, if there is no searching then totalFiltered = totalData
-//            "data"            => $tagOnclickArray   // total data array
-//        );
-//        echo json_encode($json_data);  // send data as json format
+        echo json_encode($json_data);  // send data as json format
         return false;
         ;
     }
