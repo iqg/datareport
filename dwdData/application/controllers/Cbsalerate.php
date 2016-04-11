@@ -10,9 +10,11 @@ class cbSaleRateController extends BasicController{
     public function jumpAction(){
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
+        $city = $this->getParam('city');
 
         $this->getView()->assign("startDate", $startDate);
         $this->getView()->assign("endDate", $endDate);
+        $this->getView()->assign("city", $city);
         $this->display('cbSaleRate');
         return false;
     }
@@ -33,13 +35,15 @@ class cbSaleRateController extends BasicController{
         $search = $requestData['search']['value'];
         $orderColumn = $columns[$requestData['order'][0]['column']];
         $orderDir =$requestData['order'][0]['dir'];
+        $city = $this->getParam('city');
 
         $this->cbSaleRate = $this->load('cbSaleRate');
-        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,"",$orderColumn,$orderDir);
+//        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,"",$orderColumn,$orderDir);
+
+        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$city,$orderColumn,$orderDir);
         $totalData = count($cbSaleRateArray);
-        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$search,$orderColumn,$orderDir);
-        $totalFiltered = count($cbSaleRateArray);
-        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$search,$orderColumn,$orderDir,$start,$length);
+        $totalFiltered = $totalData;
+        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$city,$orderColumn,$orderDir,$start,$length);
         $cbSaleArray = array();
         foreach($cbSaleRateArray as $key => $val){
             $a = array();
@@ -60,6 +64,7 @@ class cbSaleRateController extends BasicController{
         $collection = $db->campaignbydate;
 
         $query = array("timestamp"=>array('$gt'=>strtotime($startDate),'$lt'=>strtotime($endDate)));
+//        $query = array("timestamp"=>array('$gt'=>strtotime('2016/12/18'),'$lt'=>strtotime('2016/12/20')));
 
         $cursor = $collection->find($query);
 

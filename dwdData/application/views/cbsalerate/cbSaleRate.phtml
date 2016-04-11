@@ -8,6 +8,7 @@
     <script type="text/javascript" language="javascript" src="/public/js/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" language="javascript" src="/public/js/jquery.dataTables.js"></script>
     <script type="text/javascript" language="javascript" src="/public/js/main.js"></script>
+
     <script type="text/javascript" language="javascript" >
         $(document).ready(function() {
             var dataTable = $('#weekDataTable').DataTable( {
@@ -15,7 +16,7 @@
                 "serverSide": true,
                 retrieve: true,
                 "ajax":{
-                    url :"getJsonData?startDate=<?php echo $startDate?>&endDate=<?php echo $endDate?>", // json datasource
+                    url :"getJsonData?startDate=<?php echo $startDate?>&endDate=<?php echo $endDate?>&city=<?php echo $city ?>", // json datasource
                     type: "get",  // method  , by default get
                     error: function(){  // error handling
                         $(".employee-grid-error").html("");
@@ -78,7 +79,7 @@
 
     <input id="startDate" class="Wdate" type="text" value=<?php echo $startDate?> onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'endDate\')||\'2020-10-01\'}'})"/>
     <input id="endDate" class="Wdate" type="text" value=<?php echo $endDate?> onFocus="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}',maxDate:'2020-10-01'})"/>
-    <button type="button" onclick=find()>查询</button>
+    <button type="button" onclick=findByCity()>查询</button>
     <button type="button" onclick=excelExport()>excel导出</button>
     <table id="weekDataTable"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
         <thead>

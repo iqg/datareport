@@ -41,9 +41,7 @@ and b.name not like '一席地%' ";
             return $this->query($sql);
         }
         $sql.=" limit $start,$length ";
-
         return $this->query($sql);
-
     }
 
 

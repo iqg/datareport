@@ -45,6 +45,7 @@
     </select>
     <input id="startDate" class="Wdate" type="text" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'endDate\')||\'2020-10-01\'}'})"/>
     <input id="endDate" class="Wdate" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}',maxDate:'2020-10-01'})"/>
+    <input id="city" name = "city" type="text" />
     <button type="button" onclick=find()>查询</button>
 </div>
 </body>

@@ -2,6 +2,7 @@ function find(){
   var startDate = $("#startDate").val();
   var endDate = $("#endDate").val();
   var checkValue=$("#dataType").val();
+  var city = $("#city").val();
   if(checkValue == "0"){
     alert("请选择查询的类型");
     return;
@@ -14,6 +15,7 @@ function find(){
     alert("请选择结束时间");
     return;
   }
+
   if(checkValue == "1"){
     window.location = "/weekorderbycity/jump?startDate="+startDate+"&endDate="+endDate;
   }
@@ -42,7 +44,7 @@ function find(){
     window.location = "/offLinedetail/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
   if(checkValue == "10"){
-    window.location = "/cbSaleRate/jump?startDate="+startDate+"&endDate="+endDate;
+    window.location = "/cbSaleRate/jump?startDate="+startDate+"&endDate="+endDate+"&city="+city;
   }
 }
 
