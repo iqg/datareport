@@ -27,8 +27,12 @@
                     }
                 },
                 columns: [
-                    { data: 'tag' },
-                    { data: 'count' }
+                    { data: 'city' },
+                    { data: 'shop' },
+                    { data: 'order_count' }
+                    { data: 'stock' }
+                    { data: 'sale_rate' }
+                    { data: 'saler' }
                 ]
             } );
         } );
@@ -74,12 +78,11 @@
         <thead>
         <tr>
             <th>城市</th>
-            <th>跟进销售</th>
-            <th>活动名</th>
-            <th>门店名</th>
-            <th>可卖数量</th>
-            <th>卖出数</th>
+            <th>店名</th>
+            <th>订单量</th>
+            <th>可卖数</th>
             <th>销售率</th>
+            <th>跟进销售</th>
         </tr>
         </thead>
     </table>

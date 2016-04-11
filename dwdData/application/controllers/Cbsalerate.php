@@ -29,18 +29,19 @@ class cbSaleRateController extends BasicController{
             $a['saler'] = $val['saler'];
             $a['shop'] = $val['shop'];
             $a['city'] = $val['city'];
+            $a['cb_id'] = $val['活动ID'];
             $cbSaleArray[$val['活动ID']] = $a;
         }
 
 // 连接到mongodb
 //        $m = new MongoClient("mongodb://sa:sa@10.0.0.10:27017/iqg_prod");
-        $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
+          $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
 //        $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@127.0.0.1:2717/iqg_prod");
 
         $db = $m->iqg_prod;
         $collection = $db->campaignbydate;
 
-        $query = array("timestamp"=>array('$gt'=>strtotime('2016/3/31'),'$lt'=>strtotime('2016/4/1')));
+        $query = array("timestamp"=>array('$gt'=>strtotime('2016/3/29'),'$lt'=>strtotime('2016/4/1')));
         $cursor = $collection->find($query);
 
         $array = array();
@@ -67,18 +68,30 @@ class cbSaleRateController extends BasicController{
         foreach($cbSaleArray as $key => $val){
             $exist = array_key_exists($key,$stockArray);
             $cbSaleArray[$key]['销售率'] = $exist ? $val['order_count'] / $stockArray[$key]['stock'] : '0';
+            $cbSaleArray[$key]['stock'] = $stockArray['stock'];
+        }
+        $jsonArray = array();
+        foreach($cbSaleArray as $key => $val){
+            $a = array();
+            $a['order_count'] = $val['order_count'];
+            $a['shop'] = $val['shop'];
+            $a['cb_id'] = $val['cb_id'];
+            $a['saler'] = $val['saler'];
+            $a['city'] = $val['city'];
+            $a['stock'] = $val['stock'];
+            $a['sale_rate'] = $val['销售率'];
+            $jsonArray[] = $a;
         }
 
         $json_data = array(
             "draw"            => intval( $this->getParam('draw')),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
             "recordsTotal"    => intval( count($cbSaleArray) ),  // total number of records
             "recordsFiltered" => intval( count($cbSaleArray) ), // total number of records after searching, if there is no searching then totalFiltered = totalData
-            "data"            => $cbSaleArray   // total data array
+            "data"            => $jsonArray   // total data array
         );
-        print_r(json_encode($json_data));
-        exit;
+
         echo json_encode($json_data);  // send data as json format
         return false;
-        ;
+
     }
 }

@@ -15,7 +15,7 @@ select *
 from stats_branch_day
 where type=1
 and total_num>10
-and created_at>='".$$startDate."'
+and created_at>='".$startDate."'
 and created_at<'".$endDate."'
 group by concat(branch_id, created_at)
 order by created_at desc
