@@ -18,10 +18,28 @@ class cbSaleRateController extends BasicController{
     }
 
     public function getJsonDataAction(){
+
+        $columns = array(
+            0 =>'city',
+            1 => '总订单量',
+            2=> '已验证订单量',
+            3=> '验证率'
+        );
+        $requestData= $_REQUEST;
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
+        $start = $this->getParam('start');
+        $length = $this->getParam('length');
+        $search = $requestData['search']['value'];
+        $orderColumn = $columns[$requestData['order'][0]['column']];
+        $orderDir =$requestData['order'][0]['dir'];
+
         $this->cbSaleRate = $this->load('cbSaleRate');
-        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate);
+        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,"",$orderColumn,$orderDir);
+
+        $totalData = count($cbSaleRateArray);
+        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$search,$orderColumn,$orderDir,$start,$length);
+        $totalFiltered = count($cbSaleRateArray);
         $cbSaleArray = array();
         foreach($cbSaleRateArray as $key => $val){
             $a = array();
@@ -41,7 +59,9 @@ class cbSaleRateController extends BasicController{
         $db = $m->iqg_prod;
         $collection = $db->campaignbydate;
 
-        $query = array("timestamp"=>array('$gt'=>strtotime('2016/3/29'),'$lt'=>strtotime('2016/4/1')));
+        $query = array("timestamp"=>array('$gt'=>strtotime($startDate),'$lt'=>strtotime($endDate)));
+        print_r($query);
+        exit;
         $cursor = $collection->find($query);
 
         $array = array();
@@ -68,7 +88,7 @@ class cbSaleRateController extends BasicController{
         foreach($cbSaleArray as $key => $val){
             $exist = array_key_exists($key,$stockArray);
             $cbSaleArray[$key]['销售率'] = $exist ? $val['order_count'] / $stockArray[$key]['stock'] : '0';
-            $cbSaleArray[$key]['stock'] = $stockArray['stock'];
+            $cbSaleArray[$key]['stock'] = $exist ? $stockArray[$key]['stock'] : '0';
         }
         $jsonArray = array();
         foreach($cbSaleArray as $key => $val){
@@ -85,8 +105,8 @@ class cbSaleRateController extends BasicController{
 
         $json_data = array(
             "draw"            => intval( $this->getParam('draw')),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
-            "recordsTotal"    => intval( count($cbSaleArray) ),  // total number of records
-            "recordsFiltered" => intval( count($cbSaleArray) ), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "recordsTotal"    => intval( $totalData ),  // total number of records
+            "recordsFiltered" => intval( $totalFiltered ), // total number of records after searching, if there is no searching then totalFiltered = totalData
             "data"            => $jsonArray   // total data array
         );
 

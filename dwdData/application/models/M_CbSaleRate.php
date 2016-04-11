@@ -6,8 +6,8 @@
  * Time: 下午5:07
  */
 class M_cbSaleRate extends Model{
-    public function getSale($startDate,$endDate){
-        $sql = "select o.branch_id '门店ID', cb.id '活动ID', i.name item, b.name shop, cb.type, cb.start_time, cb.stock,o.c n,o.c*cb.stock '周可售', z.name city, s.name saler,if (cc.c is NULL, 0, cc.c) '订单量', (if (cc.c is NULL, 0, cc.c))/(o.c*cb.stock) '销售率'
+    public function getSale($startDate,$endDate,$search,$orderColumn,$orderDir,$start,$length){
+        $sql = "select o.branch_id '门店ID', cb.id '活动ID', i.name item, b.name shop, cb.type, cb.start_time, cb.stock,o.c n,o.c*cb.stock '周可售', z.name city, s.name saler,if (cc.c is NULL, 0, cc.c) '订单量'
 from (
 select branch_id,count(0) c from
 (
@@ -31,9 +31,19 @@ left join saler s on b.maintainer_id = s.id
 left join zone z on s.zone_id=z.id
 left join (select campaign_branch_id, count(0) c from product_order where `trade_status`=1 and type<3 and created_at>'".$startDate."' and created_at<'".$endDate."' group by campaign_branch_id) cc on cc.campaign_branch_id = cb.id # 获取订单数量
 where i.name is not NULL
-and b.name not like '一席地%'
-order by cc.c/(o.c*cb.stock) asc";
+and b.name not like '一席地%' ";
+
+     if(!empty($search)){
+         $sql.="and z.name like '$search%' ";
+     }
+        $sql.=" order by $orderColumn $orderDir";
+        if(empty($length)) {
+            return $this->query($sql);
+        }
+        $sql.=" limit $start,$length ";
+
         return $this->query($sql);
+
     }
 
 

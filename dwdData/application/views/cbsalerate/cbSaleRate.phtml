@@ -13,9 +13,7 @@
             var dataTable = $('#weekDataTable').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                paging: false,
                 retrieve: true,
-                searching: false,
                 "ajax":{
                     url :"getJsonData?startDate=<?php echo $startDate?>&endDate=<?php echo $endDate?>", // json datasource
                     type: "get",  // method  , by default get
@@ -25,6 +23,14 @@
                         $("#employee-grid_processing").css("display","none");
 
                     }
+                },
+                "createdRow": function( row, data, dataIndex ) {
+                    $(row).children('td').eq(0).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(1).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(2).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(3).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(4).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(5).attr('style', 'text-align: center;')
                 },
                 columns: [
                     { data: 'city' },
