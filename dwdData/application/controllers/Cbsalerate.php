@@ -36,10 +36,10 @@ class cbSaleRateController extends BasicController{
 
         $this->cbSaleRate = $this->load('cbSaleRate');
         $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,"",$orderColumn,$orderDir);
-
         $totalData = count($cbSaleRateArray);
-        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$search,$orderColumn,$orderDir,$start,$length);
+        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$search,$orderColumn,$orderDir);
         $totalFiltered = count($cbSaleRateArray);
+        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$search,$orderColumn,$orderDir,$start,$length);
         $cbSaleArray = array();
         foreach($cbSaleRateArray as $key => $val){
             $a = array();
@@ -60,8 +60,7 @@ class cbSaleRateController extends BasicController{
         $collection = $db->campaignbydate;
 
         $query = array("timestamp"=>array('$gt'=>strtotime($startDate),'$lt'=>strtotime($endDate)));
-        print_r($query);
-        exit;
+
         $cursor = $collection->find($query);
 
         $array = array();
