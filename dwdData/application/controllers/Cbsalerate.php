@@ -40,8 +40,11 @@ class cbSaleRateController extends BasicController{
         $orderDir =$requestData['order'][0]['dir'];
 
         $this->cbSaleRate = $this->load('cbSaleRate');
+//        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,"",$orderColumn,$orderDir);
+//        $totalCount = count($cbSaleRateArray);
+        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$search,$orderColumn,$orderDir);
+        $totalFiltered = count($cbSaleRateArray);
         $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$search,$orderColumn,$orderDir,$start,$length);
-
         $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
         $db = $m->iqg_prod;
         $collection = $db->campaignbydate;
@@ -62,16 +65,10 @@ class cbSaleRateController extends BasicController{
             }
         }
 
-//        foreach ($cbSaleRateArray as $key => $val) {
-//            $exist = array_key_exists($val['活动ID'],$stockArray);
-//            $val['sale_rate'] = $exist ? $val['订单量'] / $stockArray[$val['活动ID']]['stock'] : '不匹配';
-//            $val['stock'] = $exist ? $stockArray[$val['活动ID']]['stock'] : '不匹配';
-//        }
 
         $jsonArray = array();
         foreach ($cbSaleRateArray as $key => $val) {
             $exist = array_key_exists($val['活动ID'],$stockArray);
-
             if($exist) {
                 $val['sale_rate'] = $val['订单量'] / $stockArray[$val['活动ID']]['stock'] ;
                 $val['stock'] = $stockArray[$val['活动ID']]['stock'] ;
@@ -83,8 +80,8 @@ class cbSaleRateController extends BasicController{
 
         $json_data = array(
             "draw"            => intval( $this->getParam('draw')),
-            "recordsTotal"    => intval( 100000 ),
-            "recordsFiltered" => intval( 100000),
+            "recordsTotal"    => intval( $totalFiltered ),
+            "recordsFiltered" => intval( $totalFiltered),
             "data"            => $jsonArray
         );
 
