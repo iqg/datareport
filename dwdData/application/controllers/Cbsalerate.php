@@ -62,11 +62,11 @@ class cbSaleRateController extends BasicController{
             }
         }
 
-        foreach ($cbSaleRateArray as $key => $val) {
-            $exist = array_key_exists($val['活动ID'],$stockArray);
-            $val['sale_rate'] = $exist ? $val['订单量'] / $stockArray[$val['活动ID']]['stock'] : '不匹配';
-            $val['stock'] = $exist ? $stockArray[$val['活动ID']]['stock'] : '不匹配';
-        }
+//        foreach ($cbSaleRateArray as $key => $val) {
+//            $exist = array_key_exists($val['活动ID'],$stockArray);
+//            $val['sale_rate'] = $exist ? $val['订单量'] / $stockArray[$val['活动ID']]['stock'] : '不匹配';
+//            $val['stock'] = $exist ? $stockArray[$val['活动ID']]['stock'] : '不匹配';
+//        }
 
         $jsonArray = array();
         foreach ($cbSaleRateArray as $key => $val) {
