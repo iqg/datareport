@@ -36,86 +36,67 @@ class cbSaleRateController extends BasicController{
         $orderColumn = $columns[$requestData['order'][0]['column']];
         $orderDir =$requestData['order'][0]['dir'];
         $city = $this->getParam('city');
-
-        $this->cbSaleRate = $this->load('cbSaleRate');
-//        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,"",$orderColumn,$orderDir);
-
-        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$city,$orderColumn,$orderDir);
-        $totalData = count($cbSaleRateArray);
-        $totalFiltered = $totalData;
-        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,$city,$orderColumn,$orderDir,$start,$length);
-        $cbSaleArray = array();
-        foreach($cbSaleRateArray as $key => $val){
-            $a = array();
-            $a['order_count'] = $val['订单量'];
-            $a['saler'] = $val['saler'];
-            $a['shop'] = $val['shop'];
-            $a['city'] = $val['city'];
-            $a['cb_id'] = $val['活动ID'];
-            $cbSaleArray[$val['活动ID']] = $a;
-        }
-
-// 连接到mongodb
-//        $m = new MongoClient("mongodb://sa:sa@10.0.0.10:27017/iqg_prod");
-          $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
-//        $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@127.0.0.1:2717/iqg_prod");
-
+        $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
         $db = $m->iqg_prod;
         $collection = $db->campaignbydate;
-
         $query = array("timestamp"=>array('$gt'=>strtotime($startDate),'$lt'=>strtotime($endDate)));
-//        $query = array("timestamp"=>array('$gt'=>strtotime('2016/12/18'),'$lt'=>strtotime('2016/12/20')));
-
         $cursor = $collection->find($query);
-
-        $array = array();
-        foreach ($cursor as $document) {
-            $array[] = $document['data'];
-        }
         $stockArray = array();
-        foreach($array as $key1 => $val1){
-            foreach($val1 as $key => $val){
+        foreach ( $cursor as $id => $value ){
+            foreach($value['data'] as $key => $val){
                 if(array_key_exists($val['cb_id'],$stockArray)){
                     $stockArray[$val['cb_id']]['stock'] += $val['stock'];
-                }else {
+                }else{
                     $data = array();
-                    $data['item'] = $val['item'];
                     $data['brand'] = $val['brand'];
                     $data['branch'] = $val['branch'];
-                    $data['cb_id'] = $val['cb_id'];
                     $data['stock'] = $val['stock'];
                     $stockArray[$val['cb_id']] = $data;
                 }
             }
         }
-
-        foreach($cbSaleArray as $key => $val){
-            $exist = array_key_exists($key,$stockArray);
-            $cbSaleArray[$key]['销售率'] = $exist ? $val['order_count'] / $stockArray[$key]['stock'] : '0';
-            $cbSaleArray[$key]['stock'] = $exist ? $stockArray[$key]['stock'] : '0';
+        $collectionOrder = $db->campaignOrder;
+        $cursor1 = $collectionOrder->find($query);
+        $orderArray = array();
+        foreach($cursor1 as $id=>$val){
+            foreach($val['data'] as $key=>$val){
+                if(array_key_exists($val['活动ID'],$orderArray)){
+                    $orderArray[$val['活动ID']]['订单量'] += $val['订单量'];
+                }else{
+                    $data = array();
+                    $data['order_count'] = $val['订单量'];
+                    $data['shop'] = $val['shop'];
+                    $data['city'] = $val['city'];
+                    $data['saler'] = $val['saler'];
+                    $data['item'] = $val['item'];
+                    $orderArray[$val['活动ID']] = $data;
+                }
+            }
         }
+
         $jsonArray = array();
-        foreach($cbSaleArray as $key => $val){
-            $a = array();
-            $a['order_count'] = $val['order_count'];
-            $a['shop'] = $val['shop'];
-            $a['cb_id'] = $val['cb_id'];
-            $a['saler'] = $val['saler'];
-            $a['city'] = $val['city'];
-            $a['stock'] = $val['stock'];
-            $a['sale_rate'] = $val['销售率'];
-            $jsonArray[] = $a;
+        foreach($orderArray as $key => $val){
+            $exist = array_key_exists($key,$stockArray);
+            $val['sale_rate'] = $exist ? $val['订单量'] / $stockArray[$key]['stock'] : '不匹配';
+            $val['stock'] = $exist ? $stockArray[$key]['stock'] : '不匹配';
+            $jsonArray[] = $val;
         }
-
+        usort($jsonArray, function($a, $b) {
+            return $b['销售率'] > $a['销售率'] ? 1 : -1;
+        });
+        $total = count($jsonArray);
+        $jsonArray = array_slice($jsonArray,$start,$length);
         $json_data = array(
-            "draw"            => intval( $this->getParam('draw')),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
-            "recordsTotal"    => intval( $totalData ),  // total number of records
-            "recordsFiltered" => intval( $totalFiltered ), // total number of records after searching, if there is no searching then totalFiltered = totalData
-            "data"            => $jsonArray   // total data array
+            "draw"            => intval( $this->getParam('draw')),
+            "recordsTotal"    => intval( $total ),
+            "recordsFiltered" => intval( $total),
+            "data"            => $jsonArray
         );
+
 
         echo json_encode($json_data);  // send data as json format
         return false;
+
 
     }
 }
