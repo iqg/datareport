@@ -21,6 +21,7 @@ class cbSaleRateController extends BasicController{
 
     public function getJsonDataAction(){
 
+
         $columns = array(
             0 =>'city',
             1 => 'shop',
@@ -37,6 +38,11 @@ class cbSaleRateController extends BasicController{
         $search = $requestData['search']['value'];
         $orderColumn = $columns[$requestData['order'][0]['column']];
         $orderDir =$requestData['order'][0]['dir'];
+
+        $this->cbSaleRate = $this->load('cbSaleRate');
+        $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,"",$orderColumn,$orderDir);
+        print_r($cbSaleRateArray);
+        exit;
         $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
         $db = $m->iqg_prod;
         $collection = $db->campaignbydate;
