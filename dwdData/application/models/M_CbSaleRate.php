@@ -20,17 +20,20 @@ and o.created_at>'".$startDate."'
 and o.created_at<'".$endDate."'
 ";
 
-     if(!empty($search)){
-         $sql.="and z.name like '$search%' ";
-     }
-        $sql.=" order by $orderColumn $orderDir";
+        if(!empty($search)){
+            $sql.="and z.name like '$search%' ";
+        }
         if(empty($length)) {
-            $sql.="group by cb.id";
+            $sql.=" group by cb.id";
+            $sql.=" order by $orderColumn $orderDir";
             return $this->query($sql);
         }
-        $sql.=" group by cb.id limit $start,$length ";
+        $sql.=" group by cb.id";
+        $sql.=" order by $orderColumn $orderDir";
+        $sql.=" limit $start,$length ";
         return $this->query($sql);
     }
+
 
 
 }

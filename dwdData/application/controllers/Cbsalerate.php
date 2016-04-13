@@ -41,8 +41,7 @@ class cbSaleRateController extends BasicController{
 
         $this->cbSaleRate = $this->load('cbSaleRate');
         $cbSaleRateArray = $this->cbSaleRate->getSale($startDate,$endDate,"",$orderColumn,$orderDir);
-        print_r($cbSaleRateArray);
-        exit;
+
         $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
         $db = $m->iqg_prod;
         $collection = $db->campaignbydate;
@@ -62,6 +61,14 @@ class cbSaleRateController extends BasicController{
                 }
             }
         }
+
+        foreach ($cbSaleRateArray as $key => $val) {
+            $exist = array_key_exists($val['活动ID'],$stockArray);
+            $val['sale_rate'] = $exist ? $val['订单量'] / $stockArray[$val['活动ID']]['stock'] : '不匹配';
+            $val['stock'] = $exist ? $stockArray[$val['活动ID']]['stock'] : '不匹配';
+        }
+        print_r($cbSaleRateArray);
+        exit;
         $collectionOrder = $db->campaignOrder;
         $cursor1 = $collectionOrder->find($query);
         $orderArray = array();
