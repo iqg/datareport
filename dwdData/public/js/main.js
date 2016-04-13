@@ -44,7 +44,7 @@ function find(){
     window.location = "/offLinedetail/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
   if(checkValue == "10"){
-    window.location = "/cbSaleRate/jump?startDate="+startDate+"&endDate="+endDate+"&city="+city;
+    window.location = "/cbSaleRate/jump?startDate="+startDate+"&endDate="+endDate;
   }
 }
 

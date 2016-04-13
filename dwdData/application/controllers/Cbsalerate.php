@@ -35,7 +35,6 @@ class cbSaleRateController extends BasicController{
         $search = $requestData['search']['value'];
         $orderColumn = $columns[$requestData['order'][0]['column']];
         $orderDir =$requestData['order'][0]['dir'];
-        $city = $this->getParam('city');
         $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
         $db = $m->iqg_prod;
         $collection = $db->campaignbydate;
@@ -75,14 +74,26 @@ class cbSaleRateController extends BasicController{
         }
 
         $jsonArray = array();
-        foreach($orderArray as $key => $val){
-            $exist = array_key_exists($key,$stockArray);
-            $val['sale_rate'] = $exist ? $val['订单量'] / $stockArray[$key]['stock'] : '不匹配';
-            $val['stock'] = $exist ? $stockArray[$key]['stock'] : '不匹配';
-            $jsonArray[] = $val;
+        if(!empty($search)) {
+            foreach ($orderArray as $key => $val) {
+                if($val['city'] == $search) {
+                    $exist = array_key_exists($key, $stockArray);
+                    $val['sale_rate'] = $exist ? $val['order_count'] / $stockArray[$key]['stock'] : '不匹配';
+                    $val['stock'] = $exist ? $stockArray[$key]['stock'] : '不匹配';
+                    $jsonArray[] = $val;
+                }
+            }
+        }else {
+            foreach ($orderArray as $key => $val) {
+                $exist = array_key_exists($key, $stockArray);
+                $val['sale_rate'] = $exist ? $val['order_count'] / $stockArray[$key]['stock'] : '不匹配';
+                $val['stock'] = $exist ? $stockArray[$key]['stock'] : '不匹配';
+                $jsonArray[] = $val;
+
+            }
         }
         usort($jsonArray, function($a, $b) {
-            return $b['销售率'] > $a['销售率'] ? 1 : -1;
+            return $a['city'] > $b['city'] ? 1 : -1;
         });
         $total = count($jsonArray);
         $jsonArray = array_slice($jsonArray,$start,$length);
