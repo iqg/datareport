@@ -35,11 +35,13 @@
                 },
                 columns: [
                     { data: 'city' },
-                    { data: 'saler' },
+                    { data: 'item' },
+                    { data: 'cb_id' },
                     { data: 'shop' },
-                    { data: '活动ID' },
-                    { data: '订单量' },
-                    { data: 'sale_rate'}
+                    { data: 'order_count' },
+                    { data: 'stock' },
+                    { data: 'sale_rate' },
+                    { data: 'saler'}
                 ]
             } );
         } );
@@ -85,6 +87,8 @@
         <thead>
         <tr>
             <th>城市</th>
+            <th>活动名称</th>
+            <th>活动ID</th>
             <th>店名</th>
             <th>订单量</th>
             <th>可卖数</th>

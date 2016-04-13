@@ -7,7 +7,7 @@
  */
 class M_cbSaleRate extends Model{
     public function getSale($startDate,$endDate,$search,$orderColumn,$orderDir,$start,$length){
-        $sql = "select z.name 'city',s.name 'saler',b.name 'shop',cb.id '活动ID',count(0) '订单量'
+        $sql = "select z.name 'city',s.name 'saler',b.name 'shop',cb.id 'cb_id',count(0) 'order_count'
 from product_order o
 left join campaign_branch cb on cb.id = o.campaign_branch_id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id

@@ -24,10 +24,12 @@ class cbSaleRateController extends BasicController{
 
         $columns = array(
             0 =>'city',
-            1 => 'shop',
-            2=> '订单量',
-            3=> 'stock',
-            4=> 'sale_rate',
+            1 => 'item',
+            2=> 'cb_id',
+            3=> 'shop',
+            4=> 'order_count',
+            5=> 'stock',
+            5=> 'sale_rate',
             5=> 'saler'
         );
         $requestData= $_REQUEST;
@@ -57,8 +59,7 @@ class cbSaleRateController extends BasicController{
                     $stockArray[$val['cb_id']]['stock'] += $val['stock'];
                 }else{
                     $data = array();
-                    $data['brand'] = $val['brand'];
-                    $data['branch'] = $val['branch'];
+                    $data['item'] = $val['item'];
                     $data['stock'] = $val['stock'];
                     $stockArray[$val['cb_id']] = $data;
                 }
@@ -68,10 +69,11 @@ class cbSaleRateController extends BasicController{
 
         $jsonArray = array();
         foreach ($cbSaleRateArray as $key => $val) {
-            $exist = array_key_exists($val['活动ID'],$stockArray);
+            $exist = array_key_exists($val['cb_id'],$stockArray);
             if($exist) {
-                $val['sale_rate'] = $val['订单量'] / $stockArray[$val['活动ID']]['stock'] ;
-                $val['stock'] = $stockArray[$val['活动ID']]['stock'] ;
+                $val['sale_rate'] = $val['order_count'] / $stockArray[$val['cb_id']]['stock'] ;
+                $val['stock'] = $stockArray[$val['cb_id']]['stock'] ;
+                $val['item'] = $stockArray[$val['cb_id']]['item'] ;
                 $jsonArray[] = $val;
             }else{
                 continue;
