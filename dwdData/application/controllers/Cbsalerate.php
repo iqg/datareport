@@ -23,9 +23,11 @@ class cbSaleRateController extends BasicController{
 
         $columns = array(
             0 =>'city',
-            1 => '总订单量',
-            2=> '已验证订单量',
-            3=> '验证率'
+            1 => 'shop',
+            2=> 'order_count',
+            3=> 'stock',
+            4=> 'sale_rate',
+            5=> 'saler'
         );
         $requestData= $_REQUEST;
         $startDate = $this->getParam('startDate');
@@ -92,9 +94,15 @@ class cbSaleRateController extends BasicController{
 
             }
         }
-        usort($jsonArray, function($a, $b) {
-            return $a['city'] > $b['city'] ? 1 : -1;
-        });
+        if($orderDir == "asc") {
+            usort($jsonArray, function ($a, $b) {
+                return $a['$orderColumn'] > $b['$orderColumn'] ? 1 : -1;
+            });
+        }else{
+            usort($jsonArray, function ($a, $b) {
+                return $b['$orderColumn'] > $a['$orderColumn'] ? 1 : -1;
+            });
+        }
         $total = count($jsonArray);
         $jsonArray = array_slice($jsonArray,$start,$length);
         $json_data = array(
