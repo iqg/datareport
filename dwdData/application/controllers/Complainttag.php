@@ -54,14 +54,6 @@ class complaintTagController extends BasicController{
 
         $complaintTagArray = $this->complaintTag->getComplaintTag($startDate,$endDate);//获取投诉类型统计
 
-
-
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
-        $objPHPExcel = new PHPExcel();
-
-
         header('Content-Type: application/vnd.ms-excel');
         header("Content-Disposition:attachment; filename=demo.xls");
         header('Cache-Control: max-age=0');

@@ -42,15 +42,11 @@ class tagSalesController extends BasicController{
         $this->tagSales = $this->load('tagsales');
         $tagSalesArray = $this->tagSales->getTagSales($startDate,$endDate);
 
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
-        $objPHPExcel = new PHPExcel();
 
 
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
+        @header('Content-Type: application/vnd.ms-excel');
+        @header("Content-Disposition:attachment; filename=demo.xls");
+        @header('Cache-Control: max-age=0');
         $objPHPExcel = new PHPExcel();
 
 

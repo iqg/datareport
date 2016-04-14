@@ -43,15 +43,9 @@ class tagOnclickController extends BasicController{
         $this->tagOnclick = $this->load('tagonclick');
         $tagOnclickArray = $this->tagOnclick->getTagOnclick($startDate,$endDate);
 
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
-        $objPHPExcel = new PHPExcel();
-
-
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
+        @header('Content-Type: application/vnd.ms-excel');
+        @header("Content-Disposition:attachment; filename=demo.xls");
+        @header('Cache-Control: max-age=0');
         $objPHPExcel = new PHPExcel();
 
 

@@ -95,9 +95,9 @@ class weekOrderByCityController extends BasicController{
                 }
             }
         }
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
+        @header('Content-Type: application/vnd.ms-excel');
+        @header("Content-Disposition:attachment; filename=demo.xls");
+        @header('Cache-Control: max-age=0');
         $objPHPExcel = new PHPExcel();
 
 

@@ -25,6 +25,10 @@
                         $("#employee-grid_processing").css("display","none");
 
                     }
+                },"createdRow": function( row ) {
+                    $(row).children('td').eq(0).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(1).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(2).attr('style', 'text-align: center;')
                 },
                 columns: [
                     { data: 'city' },
@@ -64,6 +68,9 @@
         <option value="5">睡前摇(验证率)</option>
         <option value="6">往下拍(验证率)</option>
         <option value="7">往下拍(销售率)</option>
+        <option value="8">标签(对应销售)</option>
+        <option value="9">下线原因明细</option>
+        <option value="10">活动销售率</option>
     </select>
 
     <input id="startDate" class="Wdate" type="text" value=<?php echo $startDate?> onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'endDate\')||\'2020-10-01\'}'})"/>

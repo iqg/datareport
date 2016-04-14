@@ -83,20 +83,13 @@ class verificationRateController extends BasicController{
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
         $this->verificationRate = $this->load('verificationRate');
-        $sqyVerificationRateArray = $this->verificationRate->getSqyVerificationRate($startDate,$endDate);
+        $sqyVerificationRateArray = $this->verificationRate->getSqyVerificationRateForExcel($startDate,$endDate);
 
 
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
+        @header('Content-Type: application/vnd.ms-excel');
+        @header("Content-Disposition:attachment; filename=demo.xls");
+        @header('Cache-Control: max-age=0');
         $objPHPExcel = new PHPExcel();
-
-
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
-        $objPHPExcel = new PHPExcel();
-
 
         $objPHPExcel->setActiveSheetIndex(0)
             ->SetCellValue('A1', '城市')
