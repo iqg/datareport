@@ -5,6 +5,8 @@
  * Date: 16/4/8
  * Time: 下午2:46
  */
+require_once(dirname(__FILE__).'/phpexcel/PHPExcel.php');//加载PHPExcel
+
 class cbSaleRateController extends BasicController{
     private $cbSaleRate;
     public function jumpAction(){
@@ -131,9 +133,9 @@ class cbSaleRateController extends BasicController{
 
 
 
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
+        @header('Content-Type: application/vnd.ms-excel');
+        @header("Content-Disposition:attachment; filename=demo.xls");
+        @header('Cache-Control: max-age=0');
         $objPHPExcel = new PHPExcel();
 
 

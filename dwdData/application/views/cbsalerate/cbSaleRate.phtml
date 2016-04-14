@@ -84,7 +84,7 @@
 
     <input id="startDate" class="Wdate" type="text" value=<?php echo $startDate?> onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'endDate\')||\'2020-10-01\'}'})"/>
     <input id="endDate" class="Wdate" type="text" value=<?php echo $endDate?> onFocus="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}',maxDate:'2020-10-01'})"/>
-    <button type="button" onclick=findByCity()>查询</button>
+    <button type="button" onclick=find()>查询</button>
     <button type="button" onclick=excelExport()>excel导出</button>
     <table id="weekDataTable"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
         <thead>
