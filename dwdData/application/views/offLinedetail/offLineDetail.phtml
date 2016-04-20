@@ -9,7 +9,41 @@
     <script type="text/javascript" language="javascript" src="/public/js/jquery.dataTables.js"></script>
     <script type="text/javascript" language="javascript" src="/public/js/main.js"></script>
 
+    <script type="text/javascript" language="javascript" >
+        $(document).ready(function() {
+            var dataTable = $('#weekDataTable').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax":{
+                    url :"getJsonData?startDate=<?php echo $startDate?>&endDate=<?php echo $endDate?>", // json datasource
+                    type: "get",
+                    error: function(){
+                        $(".employee-grid-error").html("");
+                        $("#employee-grid").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+                        $("#employee-grid_processing").css("display","none");
 
+                    }
+                },
+                "createdRow": function( row, data, dataIndex ) {
+                    $(row).children('td').eq(0).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(1).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(2).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(3).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(4).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(5).attr('style', 'text-align: center;')
+                },
+
+                "columns": [
+                    { data: '城市' },
+                    { data: '销售' },
+                    { data: '门店' },
+                    { data: '商品' },
+                    { data: '下线时间' },
+                    { data: '下线原因' }
+                ]
+            } );
+        } );
+    </script>
 
     <style>
         div.container {
@@ -52,8 +86,12 @@
     <table id="weekDataTable"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
         <thead>
         <tr>
-            <th>投诉类型</th>
-            <th>数量</th>
+            <th>城市</th>
+            <th>销售</th>
+            <th>门店</th>
+            <th>商品</th>
+            <th>下线时间</th>
+            <th>下线原因</th>
         </tr>
         </thead>
     </table>
