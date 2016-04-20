@@ -59,7 +59,7 @@ class offLineDetailController extends BasicController{
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
 
-        $this->offLineDetail = $this->load('offlinedetail');
+        $this->offLineDetail = $this->load('offLineDetail');
         $offLineDetail = $this->offLineDetail->forExcelExport($startDate,$endDate);
 
         @header('Content-Type: application/vnd.ms-excel');
