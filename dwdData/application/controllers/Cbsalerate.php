@@ -120,7 +120,7 @@ class cbSaleRateController extends BasicController{
         $jsonArray = array();
         foreach ($cbSaleRateArray as $key => $val) {
             $exist = array_key_exists($val['cb_id'],$stockArray);
-            if($exist && $val['order_count'] / $stockArray[$val['cb_id']]['stock'] <= 0.3) {
+            if($exist && ($val['order_count'] / $stockArray[$val['cb_id']]['stock']) <= 0.3) {
                 $val['sale_rate'] = round($val['order_count'] / $stockArray[$val['cb_id']]['stock'],4) ;
                 $val['stock'] = $stockArray[$val['cb_id']]['stock'] ;
                 $val['item'] = $stockArray[$val['cb_id']]['item'] ;
