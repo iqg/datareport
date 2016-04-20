@@ -120,24 +120,25 @@ class cbSaleRateController extends BasicController{
         $jsonArray = array();
         foreach ($cbSaleRateArray as $key => $val) {
             $exist = array_key_exists($val['cb_id'],$stockArray);
-            if($exist && ($val['order_count'] / $stockArray[$val['cb_id']]['stock']) <= 0.3) {
-                $val['sale_rate'] = round($val['order_count'] / $stockArray[$val['cb_id']]['stock'],4) ;
-                $val['stock'] = $stockArray[$val['cb_id']]['stock'] ;
-                $val['item'] = $stockArray[$val['cb_id']]['item'] ;
-                $jsonArray[] = $val;
+            if($exist) {
+                if( ($val['order_count'] / $stockArray[$val['cb_id']]['stock']) <= 0.3) {
+                    $val['sale_rate'] = round($val['order_count'] / $stockArray[$val['cb_id']]['stock'], 4);
+                    $val['stock'] = $stockArray[$val['cb_id']]['stock'];
+                    $val['item'] = $stockArray[$val['cb_id']]['item'];
+                    $jsonArray[] = $val;
+                }else{
+                    continue;
+                }
             }else{
                 continue;
             }
         }
 
 
-  
-
         @header('Content-Type: application/vnd.ms-excel');
-        @header("Content-Disposition:attachment; filename=demo.xls");
+        @header("Content-Disposition:attachment; filename=$startDate-$endDate.销售率.xls");
         @header('Cache-Control: max-age=0');
         $objPHPExcel = new PHPExcel();
-
 
         $objPHPExcel->setActiveSheetIndex(0)
             ->SetCellValue('A1', '城市')
