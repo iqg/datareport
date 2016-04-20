@@ -97,8 +97,6 @@ class verificationRateController extends BasicController{
             ->SetCellValue('C1', '已验证订单量')
             ->SetCellValue('D1', '验证率')
         ;
-        $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(true);//加粗A2
-
         $count = 2;
         for($i=0;$i<count($sqyVerificationRateArray);$i++){
             $objPHPExcel->setActiveSheetIndex(0)

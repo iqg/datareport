@@ -39,9 +39,10 @@ class weekOrderByCityController extends BasicController{
        $weekRefundOrderArray = $this->weekDatas->getRefundOrder($startDate,$endDate); //周退单
 
        $data = array();
-
-       for($i=0;$i<count($weekOrderArray);$i++){
-           for($j=0;$j<count($weekRefundOrderArray);$j++){
+       $weekOrderArrayCount = count($weekOrderArray);
+       $weekRefundOrderArrayCount = count($weekRefundOrderArray);
+       for($i=0;$i<$weekOrderArrayCount;$i++){
+           for($j=0;$j<$weekRefundOrderArrayCount;$j++){
                if($weekOrderArray[$i]['city'] == $weekRefundOrderArray[$j]['city']){
                    $a = array();
                    $a[] = $weekOrderArray[$i]['city'];
@@ -75,11 +76,6 @@ class weekOrderByCityController extends BasicController{
         $weekOrderArray = $this->weekDatas->getWeekOrder($startDate,$endDate); //周订单
         $weekRefundOrderArray = $this->weekDatas->getRefundOrder($startDate,$endDate); //周退单
 
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
-        $objPHPExcel = new PHPExcel();
-
 
         for($i=0;$i<count($weekOrderArray);$i++){
             for($j=0;$j<count($weekRefundOrderArray);$j++){
@@ -110,7 +106,8 @@ class weekOrderByCityController extends BasicController{
         $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(true);//加粗A2
 
         $count = 2;
-        for($i=0;$i<count($data);$i++){
+        $dataCount = count($data);
+        for($i=0;$i<$dataCount;$i++){
             $objPHPExcel->setActiveSheetIndex(0)
                 ->setCellValue('A'.$count,$data[$i][0])
                 ->setCellValue('B'.$count,$data[$i][1])

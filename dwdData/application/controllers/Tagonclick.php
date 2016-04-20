@@ -57,7 +57,8 @@ class tagOnclickController extends BasicController{
         $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(true);//加粗A2
 
         $count = 2;
-        for($i=0;$i<count($tagOnclickArray);$i++){
+        $tagOnclickArrayCount = count($tagOnclickArray);
+        for($i=0;$i<$tagOnclickArrayCount;$i++){
             $objPHPExcel->setActiveSheetIndex(0)
                 ->setCellValue('A'.$count,$tagOnclickArray[$i]['操作人ID'])
                 ->setCellValue('B'.$count,$tagOnclickArray[$i]['操作人姓名'])

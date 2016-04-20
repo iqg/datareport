@@ -39,7 +39,7 @@ class cbSaleRateController extends BasicController{
         $endDate = $this->getParam('endDate');
         $start = $this->getParam('start');
         $length = $this->getParam('length');
-        $search = $requestData['search']['value'];
+            $search = $requestData['search']['value'];
         $orderColumn = $columns[$requestData['order'][0]['column']];
         $orderDir =$requestData['order'][0]['dir'];
 
