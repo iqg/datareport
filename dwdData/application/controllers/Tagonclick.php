@@ -24,7 +24,7 @@ class tagOnclickController extends BasicController{
     public function getJsonDataAction(){
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
-        $this->tagOnclick = $this->load('tagonclick');
+        $this->tagOnclick = $this->load('tagOnclick');
         $tagOnclickArray = $this->tagOnclick->getTagOnclick($startDate,$endDate);
         $json_data = array(
             "draw"            => intval( $this->getParam('draw')),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
@@ -40,11 +40,11 @@ class tagOnclickController extends BasicController{
 
         $startDate = $this->getParam('startDate');
         $endDate = $this->getParam('endDate');
-        $this->tagOnclick = $this->load('tagonclick');
+        $this->tagOnclick = $this->load('tagOnclick');
         $tagOnclickArray = $this->tagOnclick->getTagOnclick($startDate,$endDate);
 
         @header('Content-Type: application/vnd.ms-excel');
-        @header("Content-Disposition:attachment; filename=demo.xls");
+        @header("Content-Disposition:attachment; filename=$startDate-$endDate.运营标签点击次数.xls");
         @header('Cache-Control: max-age=0');
         $objPHPExcel = new PHPExcel();
 

@@ -26,9 +26,7 @@ class complaintTagController extends BasicController{
         return false;
     }
 
-    /**
-     *  基于城市的下线活动数 表格数据json格式
-     */
+
     public function getJsonDataAction(){
         $this->complaintTag = $this->load('complaintTag');
         $startDate = $this->getParam('startDate');   //查询开始日期
@@ -54,9 +52,9 @@ class complaintTagController extends BasicController{
 
         $complaintTagArray = $this->complaintTag->getComplaintTag($startDate,$endDate);//获取投诉类型统计
 
-        header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition:attachment; filename=demo.xls");
-        header('Cache-Control: max-age=0');
+        @header('Content-Type: application/vnd.ms-excel');
+        @header("Content-Disposition:attachment; filename=$startDate-$endDate.投诉类型统计.xls");
+        @header('Cache-Control: max-age=0');
         $objPHPExcel = new PHPExcel();
 
 

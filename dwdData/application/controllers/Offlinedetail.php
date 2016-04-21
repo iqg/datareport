@@ -63,7 +63,7 @@ class offLineDetailController extends BasicController{
         $offLineDetail = $this->offLineDetail->forExcelExport($startDate,$endDate);
 
         @header('Content-Type: application/vnd.ms-excel');
-        @header("Content-Disposition:attachment; filename=demo.xls");
+        @header("Content-Disposition:attachment; filename=$startDate-$endDate.下线活动明细.xls");
         @header('Cache-Control: max-age=0');
         $objPHPExcel = new PHPExcel();
 
