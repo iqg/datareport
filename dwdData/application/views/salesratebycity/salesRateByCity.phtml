@@ -35,13 +35,10 @@
                 },
                 columns: [
                     { data: 'city' },
-                    { data: 'item' },
-                    { data: 'cb_id' },
-                    { data: 'shop' },
                     { data: 'order_count' },
                     { data: 'stock' },
-                    { data: 'sale_rate' },
-                    { data: 'saler'}
+                    { data: 'sale_rate'}
+
                 ]
             } );
         } );
@@ -76,7 +73,7 @@
         <option value="4">运营标签点击次数</option>
         <option value="5">睡前摇(验证率)</option>
         <option value="6">往下拍(验证率)</option>
-        <option value="7">往下拍(销售率)</option>
+        <option value="7">基于城市销售率</option>
         <option value="8">标签(对应销售)</option>
         <option value="9">下线原因明细</option>
         <option value="10">活动销售率</option>
@@ -85,18 +82,15 @@
     <input id="startDate" class="Wdate" type="text" value=<?php echo $startDate?> onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'endDate\')||\'2020-10-01\'}'})"/>
     <input id="endDate" class="Wdate" type="text" value=<?php echo $endDate?> onFocus="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}',maxDate:'2020-10-01'})"/>
     <button type="button" onclick=find()>查询</button>
-    <button type="button" onclick=excelExport()>excel导出</button><span>导出的是销售率30%以下的哦</span>
+    <button type="button" onclick=excelExport()>excel导出</button>
     <table id="weekDataTable"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
         <thead>
         <tr>
             <th>城市</th>
-            <th>活动名称</th>
-            <th>活动ID</th>
-            <th>店名</th>
-            <th>订单量</th>
-            <th>可卖数</th>
+            <th>订单数</th>
+            <th>总库存</th>
             <th>销售率</th>
-            <th>跟进销售</th>
+
         </tr>
         </thead>
     </table>
