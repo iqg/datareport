@@ -50,6 +50,7 @@ class salesRateByCityController extends BasicController{
                 }else{
                     $data = array();
                     $data['stock'] = $val['stock'];
+                    $data['city'] = $val['city'];
                     $stockArray[$val['city']] = $data;
                 }
             }
@@ -62,7 +63,7 @@ class salesRateByCityController extends BasicController{
             if($exist && $val['order_count'] ) {
                 $val['sale_rate'] = round($val['order_count'] / $stockArray[$val['city']]['stock'],4) ;
                 $val['stock'] = $stockArray[$val['city']]['stock'] ;
-                $val['city'] = $stockArray[$val['city']] ;
+                $val['city'] = $stockArray[$val['city']]['city'] ;
                 $jsonArray[] = $val;
             }else{
                 continue;
