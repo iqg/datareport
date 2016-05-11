@@ -140,16 +140,14 @@ class salesRateByCityController extends BasicController{
             ->SetCellValue('C1', '总库存')
             ->SetCellValue('D1', '销售率')
         ;
-        $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(true);//加粗A2
 
         $count = 2;
         for($i=0;$i<count($jsonArray);$i++){
             $objPHPExcel->setActiveSheetIndex(0)
                 ->setCellValue('A'.$count,$jsonArray[$i]['city'])
-                ->setCellValue('B'.$count,$jsonArray[$i]['item'])
-                ->setCellValue('C'.$count,$jsonArray[$i]['cb_id'])
-                ->setCellValue('D'.$count,$jsonArray[$i]['shop'])
-
+                ->setCellValue('B'.$count,$jsonArray[$i]['order_count'])
+                ->setCellValue('C'.$count,$jsonArray[$i]['stock'])
+                ->setCellValue('D'.$count,$jsonArray[$i]['sale_rate'])
             ;
 
             $count++;
