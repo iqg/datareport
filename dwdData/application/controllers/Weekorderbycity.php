@@ -40,7 +40,7 @@ class weekOrderByCityController extends BasicController{
 
        $data = array();
        $weekOrderArrayCount = count($weekOrderArray);
-       $weekRefundOrderArrayCount = count($weekRefundOrderArray);
+       $weekRefundOrderArrayCount = count($weekRefundOrderArray); 
        for($i=0;$i<$weekOrderArrayCount;$i++){
            for($j=0;$j<$weekRefundOrderArrayCount;$j++){
                if($weekOrderArray[$i]['city'] == $weekRefundOrderArray[$j]['city']){

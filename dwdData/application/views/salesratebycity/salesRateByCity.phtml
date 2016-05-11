@@ -8,14 +8,13 @@
     <script type="text/javascript" language="javascript" src="/public/js/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" language="javascript" src="/public/js/jquery.dataTables.js"></script>
     <script type="text/javascript" language="javascript" src="/public/js/main.js"></script>
+
     <script type="text/javascript" language="javascript" >
         $(document).ready(function() {
             var dataTable = $('#weekDataTable').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                paging: false,
                 retrieve: true,
-                searching: false,
                 "ajax":{
                     url :"getJsonData?startDate=<?php echo $startDate?>&endDate=<?php echo $endDate?>", // json datasource
                     type: "get",  // method  , by default get
@@ -25,19 +24,29 @@
                         $("#employee-grid_processing").css("display","none");
 
                     }
-                },"createdRow": function( row ) {
+                },
+                "createdRow": function( row, data, dataIndex ) {
                     $(row).children('td').eq(0).attr('style', 'text-align: center;')
                     $(row).children('td').eq(1).attr('style', 'text-align: center;')
                     $(row).children('td').eq(2).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(3).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(4).attr('style', 'text-align: center;')
+                    $(row).children('td').eq(5).attr('style', 'text-align: center;')
                 },
                 columns: [
                     { data: 'city' },
-                    { data: 'onLineCount' },
-                    { data: 'offLineCount' }
+                    { data: 'item' },
+                    { data: 'cb_id' },
+                    { data: 'shop' },
+                    { data: 'order_count' },
+                    { data: 'stock' },
+                    { data: 'sale_rate' },
+                    { data: 'saler'}
                 ]
             } );
         } );
     </script>
+
 
     <style>
         div.container {
@@ -57,8 +66,8 @@
     </style>
 </head>
 <body>
-<div class="header"><h1>基于城市的周下线活动详情</h1></div>
-<div class="container">
+<div class="header"><h1>活动销售率</h1></div>
+<div class="container" >
     <select id="dataType" data-rel="chosen" >
         <option value="0">请选择</option>
         <option value="1">基于城市的周订单量</option>
@@ -67,7 +76,7 @@
         <option value="4">运营标签点击次数</option>
         <option value="5">睡前摇(验证率)</option>
         <option value="6">往下拍(验证率)</option>
-        <option value="7">基于城市销售率</option>
+        <option value="7">往下拍(销售率)</option>
         <option value="8">标签(对应销售)</option>
         <option value="9">下线原因明细</option>
         <option value="10">活动销售率</option>
@@ -76,13 +85,18 @@
     <input id="startDate" class="Wdate" type="text" value=<?php echo $startDate?> onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'endDate\')||\'2020-10-01\'}'})"/>
     <input id="endDate" class="Wdate" type="text" value=<?php echo $endDate?> onFocus="WdatePicker({minDate:'#F{$dp.$D(\'startDate\')}',maxDate:'2020-10-01'})"/>
     <button type="button" onclick=find()>查询</button>
-    <button type="button" onclick=excelExport()>excel导出</button>
+    <button type="button" onclick=excelExport()>excel导出</button><span>导出的是销售率30%以下的哦</span>
     <table id="weekDataTable"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
         <thead>
         <tr>
             <th>城市</th>
-            <th>活动上线数</th>
-            <th>活动下线数</th>
+            <th>活动名称</th>
+            <th>活动ID</th>
+            <th>店名</th>
+            <th>订单量</th>
+            <th>可卖数</th>
+            <th>销售率</th>
+            <th>跟进销售</th>
         </tr>
         </thead>
     </table>

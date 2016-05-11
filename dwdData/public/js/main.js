@@ -35,7 +35,7 @@ function find(){
     window.location = "/verificationrate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
   }
   if(checkValue == "7"){
-    window.location = "/salesrate/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
+    window.location = "/salesratebycity/jump?startDate="+startDate+"&endDate="+endDate;
   }
   if(checkValue == "8"){
     window.location = "/tagsales/jump?startDate="+startDate+"&endDate="+endDate+"&type=wxp";
