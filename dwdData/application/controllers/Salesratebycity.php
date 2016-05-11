@@ -95,7 +95,7 @@ class salesRateByCityController extends BasicController{
         $endDate = $this->getParam('endDate');
         $this->salesRateByCity = $this->load('SaleRateByCity');
 
-        $SaleRateByCityArray = $this->salesRateByCity->getSaleRate($startDate,$endDate);
+        $SaleRateByCityArray = $this->salesRateByCity->getSaleForExcel($startDate,$endDate);
 
         $m = new MongoClient("mongodb://iqg_prod:oq9ghGYj9ViR@10.132.163.91:27017/iqg_prod");
         $db = $m->iqg_prod;
