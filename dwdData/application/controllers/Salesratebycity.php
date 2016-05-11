@@ -50,7 +50,7 @@ class salesRateByCityController extends BasicController{
                 $x = "%**#".$val['item'];
                 $boolean = strpos($x, "到家美食会");
                 $boolean2 = strpos($x, "需支付运费");
-                if ($val['delivery_type'] == 1 && $boolean > 0 && $boolean2 > 0) {
+                if ($val['delivery_type'] == 1 && $boolean == 0 && $boolean2 == 0) {
                     if (array_key_exists($val['city'], $stockArray)) {
                         $stockArray[$val['city']]['stock'] += $val['stock'];
                     } else {
@@ -103,18 +103,27 @@ class salesRateByCityController extends BasicController{
         $query = array("timestamp"=>array('$gt'=>strtotime($startDate),'$lt'=>strtotime($endDate)));
         $cursor = $collection->find($query);
         $stockArray = array();
-        foreach ( $cursor as $id => $value ){
-            foreach($value['data'] as $key => $val){
-                if(array_key_exists($val['city'],$stockArray)){
-                    $stockArray[$val['city']]['stock'] += $val['stock'];
-                }else{
-                    $data = array();
-                    $data['stock'] = $val['stock'];
-                    $data['city'] = $val['city'];
-                    $stockArray[$val['city']] = $data;
+        foreach ($cursor as $id => $value) {
+            foreach ($value['data'] as $key => $val) {
+                $x = "%**#".$val['item'];
+                $boolean = strpos($x, "到家美食会");
+                $boolean2 = strpos($x, "需支付运费");
+                if ($val['delivery_type'] == 1 && $boolean == 0 && $boolean2 == 0) {
+                    if (array_key_exists($val['city'], $stockArray)) {
+                        $stockArray[$val['city']]['stock'] += $val['stock'];
+                    } else {
+                        $data = array();
+                        $data['stock'] = $val['stock'];
+                        $data['city'] = $val['city'];
+                        $stockArray[$val['city']] = $data;
+                    }
+
+                } else {
+                    continue;
                 }
             }
         }
+
 
 
         $jsonArray = array();
