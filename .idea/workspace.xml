@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1428dd0-fb02-462c-974d-399fdc221d09" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dwdData/application/controllers/Salesratebycity.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dwdData/application/models/M_SaleRateByCity.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dwdData/application/views/salesratebycity/salesRateByCity.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/controllers/Cbsalerate.php" afterPath="$PROJECT_DIR$/dwdData/application/controllers/Cbsalerate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/controllers/Weekorderbycity.php" afterPath="$PROJECT_DIR$/dwdData/application/controllers/Weekorderbycity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/views/complainttag/complaintTag.phtml" afterPath="$PROJECT_DIR$/dwdData/application/views/complainttag/complaintTag.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/views/offLinedetail/offLineDetail.phtml" afterPath="$PROJECT_DIR$/dwdData/application/views/offLinedetail/offLineDetail.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/views/salesrate/salesRate.phtml" afterPath="$PROJECT_DIR$/dwdData/application/views/salesrate/salesRate.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/views/tagonclick/tagOnclick.phtml" afterPath="$PROJECT_DIR$/dwdData/application/views/tagonclick/tagOnclick.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/views/user/main.phtml" afterPath="$PROJECT_DIR$/dwdData/application/views/user/main.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/views/verificationrate/sqyVerificationRate.phtml" afterPath="$PROJECT_DIR$/dwdData/application/views/verificationrate/sqyVerificationRate.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/views/verificationrate/wxpVerificationRate.phtml" afterPath="$PROJECT_DIR$/dwdData/application/views/verificationrate/wxpVerificationRate.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/application/views/weekcomplaintbranch/weekComplaintBranch.phtml" afterPath="$PROJECT_DIR$/dwdData/application/views/weekcomplaintbranch/weekComplaintBranch.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/conf/application.ini" afterPath="$PROJECT_DIR$/dwdData/conf/application.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwdData/public/js/main.js" afterPath="$PROJECT_DIR$/dwdData/public/js/main.js" />
     </list>
     <ignored path="datareport.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +25,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Salesratebycity.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.ini" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dwdData/conf/application.ini">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1296">
+              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Salesratebycity.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dwdData/application/controllers/Salesratebycity.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="596">
@@ -55,8 +51,8 @@
             <state relative-caret-position="522">
               <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding>
-                <marker date="1462935905016" expanded="true" signature="239:621" placeholder="select z.nam... product_order" />
-                <marker date="1462935905016" expanded="true" signature="1119:1601" placeholder="select z.nam... product_order" />
+                <marker date="1462945129733" expanded="true" signature="239:621" placeholder="select z.nam... product_order" />
+                <marker date="1462945129733" expanded="true" signature="1119:1601" placeholder="select z.nam... product_order" />
               </folding>
             </state>
           </provider>
@@ -92,7 +88,6 @@
       <list>
         <option value="$PROJECT_DIR$/dwdData/application/controllers/Weekorderbycity.php" />
         <option value="$PROJECT_DIR$/dwdData/application/models/M_WeekDatas.php" />
-        <option value="$PROJECT_DIR$/dwdData/conf/application.ini" />
         <option value="$PROJECT_DIR$/dwdData/application/controllers/SalesRateByCity.php" />
         <option value="$PROJECT_DIR$/dwdData/application/views/user/main.phtml" />
         <option value="$PROJECT_DIR$/dwdData/application/views/complainttag/complaintTag.phtml" />
@@ -109,6 +104,7 @@
         <option value="$PROJECT_DIR$/dwdData/public/js/main.js" />
         <option value="$PROJECT_DIR$/dwdData/application/views/salesratebycity/salesRateByCity.phtml" />
         <option value="$PROJECT_DIR$/dwdData/application/controllers/Salesratebycity.php" />
+        <option value="$PROJECT_DIR$/dwdData/conf/application.ini" />
       </list>
     </option>
   </component>
@@ -191,6 +187,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="datareport" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="datareport" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dwdData" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="conf" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -402,12 +416,12 @@
       <updated>1462874388006</updated>
       <workItem from="1462874389304" duration="1177000" />
       <workItem from="1462928421677" duration="535000" />
-      <workItem from="1462928974452" duration="10465000" />
+      <workItem from="1462928974452" duration="11228000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12177000" />
+    <option name="totallyTimeSpent" value="12940000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1431" y="24" width="1855" height="1056" extended-state="6" />
@@ -704,14 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dwdData/conf/application.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dwdData/public/js/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -856,8 +862,8 @@
         <state relative-caret-position="522">
           <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding>
-            <marker date="1462935905016" expanded="true" signature="239:621" placeholder="select z.nam... product_order" />
-            <marker date="1462935905016" expanded="true" signature="1119:1601" placeholder="select z.nam... product_order" />
+            <marker date="1462945129733" expanded="true" signature="239:621" placeholder="select z.nam... product_order" />
+            <marker date="1462945129733" expanded="true" signature="1119:1601" placeholder="select z.nam... product_order" />
           </folding>
         </state>
       </provider>
@@ -866,6 +872,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="596">
           <caret line="68" column="13" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dwdData/conf/application.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1296">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding />
         </state>
       </provider>
