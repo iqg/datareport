@@ -50,7 +50,7 @@ class salesRateByCityController extends BasicController{
                 $x = "%**#".$val['item'];
                 $boolean = strpos($x, "到家美食会");
                 $boolean2 = strpos($x, "需支付运费");
-                if ($val['delivery_type'] == 1 && $boolean == 0 && $boolean2 == 0) {
+                if ($val['delivery_type'] == 1 && $boolean == 0 && $boolean2 == 0 && $val['type'] < 3) {
                     if (array_key_exists($val['city'], $stockArray)) {
                         $stockArray[$val['city']]['stock'] += $val['stock'];
                     } else {
@@ -108,7 +108,7 @@ class salesRateByCityController extends BasicController{
                 $x = "%**#".$val['item'];
                 $boolean = strpos($x, "到家美食会");
                 $boolean2 = strpos($x, "需支付运费");
-                if ($val['delivery_type'] == 1 && $boolean == 0 && $boolean2 == 0) {
+                if ($val['delivery_type'] == 1 && $boolean == 0 && $boolean2 == 0 && $val['type'] < 3) {
                     if (array_key_exists($val['city'], $stockArray)) {
                         $stockArray[$val['city']]['stock'] += $val['stock'];
                     } else {
@@ -151,7 +151,8 @@ class salesRateByCityController extends BasicController{
         ;
 
         $count = 2;
-        for($i=0;$i<count($jsonArray);$i++){
+        $length = count($jsonArray);
+        for($i=0;$i<$length;$i++){
             $objPHPExcel->setActiveSheetIndex(0)
                 ->setCellValue('A'.$count,$jsonArray[$i]['city'])
                 ->setCellValue('B'.$count,$jsonArray[$i]['order_count'])
