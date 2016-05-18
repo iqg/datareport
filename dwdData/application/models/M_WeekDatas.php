@@ -16,7 +16,8 @@ from product_order o
 left join campaign_branch cb on cb.id = o.campaign_branch_id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
-left join zone z on b.zone_id=z.id
+left join saler s on s.id = b.maintainer_id
+left join zone z on s.zone_id=z.id
 where o.status=6
 and o.type<3
 and o.created_at>'".$startDate."'
@@ -34,7 +35,8 @@ from product_order o
 left join campaign_branch cb on cb.id = o.campaign_branch_id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
-left join zone z on b.zone_id=z.id
+left join saler s on s.id = b.maintainer_id
+left join zone z on s.zone_id=z.id
 where o.trade_status=1
 and o.type<3
 and o.created_at>'".$startDate."'
