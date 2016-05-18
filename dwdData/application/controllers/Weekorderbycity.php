@@ -52,9 +52,18 @@ class weekOrderByCityController extends BasicController{
                    $a[] = $weekRefundOrderArray[$j]['price'];
                    $data[] = $a;
                    break;
+               }else{
+                   $a = array();
+                   $a[] = $weekOrderArray[$i]['city'];
+                   $a[] = $weekOrderArray[$i]['orderCount'];
+                   $a[] = $weekOrderArray[$i]['price'];
+                   $a[] = 0;
+                   $a[] = 0;
+                   $data[] = $a;
                }
            }
        }
+
        $json_data = array(
            "draw"            => intval( $this->getParam('draw')),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
            "recordsTotal"    => intval( count($weekOrderArray) ),  // total number of records
