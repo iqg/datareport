@@ -52,7 +52,7 @@ class weekOrderByCityController extends BasicController{
                    $a[] = $weekRefundOrderArray[$j]['price'];
                    $data[] = $a;
                    break;
-               }else if( $j == $weekOrderArrayCount - 1){
+               }else if($j == $weekRefundOrderArrayCount - 1){
                    $a = array();
                    $a[] = $weekOrderArray[$i]['city'];
                    $a[] = $weekOrderArray[$i]['orderCount'];
@@ -62,9 +62,6 @@ class weekOrderByCityController extends BasicController{
                    $data[] = $a;
                }
            }
-    
-
-
        }
 
        $json_data = array(
