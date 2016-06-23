@@ -11,9 +11,9 @@ class M_complaintBranch extends Model{
 from log_campaign_branch_operation l
 left join campaign_branch cb on l.campaign_branch_id=cb.id
 left join campaignbranch_has_branches cbb on cbb.campaignbranch_id=cb.id
-left join branch b on b.id=cbb.branch_id
+left join branch b on b.id= cbb.branch_id
 left join saler s on s.id = b.maintainer_id
-left join zone z on z.id=s.zone_id
+left join zone z on z.id= b.zone_id
 where l.status=5
 and l.enabled=3
 and (l.remark is Null or l.remark='')
@@ -31,7 +31,7 @@ left join campaign_branch cb on l.campaign_branch_id=cb.id
 left join campaignbranch_has_branches cbb on cbb.campaignbranch_id=cb.id
 left join branch b on b.id=cbb.branch_id
 left join saler s on s.id = b.maintainer_id
-left join zone z on z.id=s.zone_id
+left join zone z on z.id= b.zone_id
 where l.status=5
 and l.enabled<3
 and l.created_at>'".$startDate."'

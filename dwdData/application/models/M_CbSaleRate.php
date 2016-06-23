@@ -7,13 +7,13 @@
  */
 class M_cbSaleRate extends Model{
     public function getSale($startDate,$endDate,$search,$orderColumn,$orderDir,$start,$length){
-        $sql = "select z.name 'city',s.name 'saler',b.name 'shop',cb.id 'cb_id',count(0) 'order_count'
+        $sql = "select z.name 'city',s.name 's  aler',b.name 'shop',cb.id 'cb_id',count(0) 'order_count'
 from product_order o
 left join campaign_branch cb on cb.id = o.campaign_branch_id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
 left join saler s on s.id=b.`maintainer_id`
-left join zone z on s.zone_id=z.id
+left join zone z on b.zone_id=z.id
 where o.trade_status=1
 and o.type<3
 and o.created_at>'".$startDate."'
@@ -41,7 +41,7 @@ left join campaign_branch cb on cb.id = o.campaign_branch_id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
 left join saler s on s.id=b.`maintainer_id`
-left join zone z on s.zone_id=z.id
+left join zone z on b.zone_id=z.id
 where o.trade_status=1
 and o.type<3
 and o.created_at>'".$startDate."'

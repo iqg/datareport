@@ -29,7 +29,7 @@ left join (select distinct(id), campaign_id, type, `start_time`, `stock` from ca
 left join campaign cp on cb.campaign_id = cp.id
 left join item i on i.id = cp.item_id
 left join saler s on b.maintainer_id = s.id
-left join zone z on s.zone_id=z.id
+left join zone z on b.zone_id=z.id
 left join (select campaign_branch_id, count(0) c from product_order where `trade_status`=1 and type<3 and created_at>'".$startDate."' and created_at<'".$endDate."' group by campaign_branch_id) cc on cc.campaign_branch_id = cb.id # 获取订单数量
 where i.name is not NULL
 and b.name not like '一席地%'
