@@ -18,7 +18,7 @@ left join campaign cp on cb.campaign_id = cp.id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
 left join saler s on s.id=b.`maintainer_id`
-left join zone z on s.zone_id=z.id
+left join zone z on b.zone_id=z.id
 where o.trade_status=1
 and o.type=6
 and o.created_at>'".$startDate."'
@@ -52,7 +52,7 @@ left join campaign cp on cb.campaign_id = cp.id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
 left join saler s on s.id=b.`maintainer_id`
-left join zone z on s.zone_id=z.id
+left join zone z on b_id=z.id
 where o.redeem_time is not null
 and o.type=6
 and o.created_at>'".$startDate."'
@@ -99,7 +99,7 @@ left join campaign cp on cb.campaign_id = cp.id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
 left join saler s on s.id=b.`maintainer_id`
-left join zone z on s.zone_id=z.id
+left join zone z on b.zone_id=z.id
 where o.trade_status=1
 and o.type<3
 and o.created_at>'".$startDate."'
@@ -133,7 +133,7 @@ left join campaign cp on cb.campaign_id = cp.id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
 left join saler s on s.id=b.`maintainer_id`
-left join zone z on s.zone_id=z.id
+left join zone z on b.zone_id=z.id
 where o.redeem_time is not null
 and o.type<3
 and o.created_at>'".$startDate."'
@@ -177,7 +177,7 @@ left join campaign cp on cb.campaign_id = cp.id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
 left join saler s on s.id=b.`maintainer_id`
-left join zone z on s.zone_id=z.id
+left join zone z on b.zone_id=z.id
 where o.trade_status=1
 and o.type=6
 and o.created_at>'" . $startDate . "'
@@ -211,7 +211,7 @@ left join campaign cp on cb.campaign_id = cp.id
 left join campaignbranch_has_branches cbb on cbb.`campaignbranch_id`=cb.id
 left join branch b on cbb.branch_id = b.id
 left join saler s on s.id=b.`maintainer_id`
-left join zone z on s.zone_id=z.id
+left join zone z on b.zone_id=z.id
 where o.redeem_time is not null
 and o.type=6
 and o.created_at>'" . $startDate . "'
