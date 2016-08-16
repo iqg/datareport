@@ -17,7 +17,7 @@ left join zone z on z.id= b.zone_id
 where l.status=5
 and l.enabled=3
 and l.type = 1
-and (l.remark is Null or l.remark='' or l.remark = '批量上线')
+and (l.remark = '' or l.remark = '批量上线' or l.remark = '商户入驻活动审核通过上线')
 and l.created_at>'".$startDate."'
 and l.created_at<'".$endDate."'
 group by z.id
