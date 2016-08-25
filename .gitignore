@@ -18,7 +18,7 @@ deploy/*
 /.tags*
 /.tags_sorted_by_file
 /resetData.sh
-
+/.idea
 *.php~
 *.swap
 *.swp
