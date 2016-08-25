@@ -1,6 +1,5 @@
 .workspace.xml
 .idea/workspace.xml
-
 # Cache and logs
 logs/*
 log/*
